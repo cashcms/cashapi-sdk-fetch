@@ -21,6 +21,7 @@ import type {
   CashcmsLoginResponse,
   CashcmsMembership,
   CashcmsPagedResponseCashcmsPost,
+  CashcmsPaymentMethod,
   CashcmsPost,
   CashcmsPostAttachmentRecord,
   CashcmsRegisterParams,
@@ -42,6 +43,8 @@ import {
     CashcmsMembershipToJSON,
     CashcmsPagedResponseCashcmsPostFromJSON,
     CashcmsPagedResponseCashcmsPostToJSON,
+    CashcmsPaymentMethodFromJSON,
+    CashcmsPaymentMethodToJSON,
     CashcmsPostFromJSON,
     CashcmsPostToJSON,
     CashcmsPostAttachmentRecordFromJSON,
@@ -108,6 +111,7 @@ export interface GetCategoryByIdRequest {
 
 export interface GetMembershipOrderRequest {
     membership: string;
+    paymentMethod?: string;
 }
 
 export interface GetPostByIdRequest {
@@ -711,6 +715,10 @@ export class DefaultApi extends runtime.BaseAPI {
             queryParameters['membership'] = requestParameters['membership'];
         }
 
+        if (requestParameters['paymentMethod'] != null) {
+            queryParameters['paymentMethod'] = requestParameters['paymentMethod'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
@@ -757,6 +765,34 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async getMemberships(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CashcmsMembership>> {
         const response = await this.getMembershipsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 获取支持的支付方式
+     * 获取支持的支付方式
+     */
+    async getPaymentMethodsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CashcmsPaymentMethod>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/api/memberships/paymentMethods`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(CashcmsPaymentMethodFromJSON));
+    }
+
+    /**
+     * 获取支持的支付方式
+     * 获取支持的支付方式
+     */
+    async getPaymentMethods(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CashcmsPaymentMethod>> {
+        const response = await this.getPaymentMethodsRaw(initOverrides);
         return await response.value();
     }
 

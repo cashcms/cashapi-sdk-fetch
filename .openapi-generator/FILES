@@ -12,6 +12,7 @@ src/models/CashcmsLoginParams.ts
 src/models/CashcmsLoginResponse.ts
 src/models/CashcmsMembership.ts
 src/models/CashcmsPagedResponseCashcmsPost.ts
+src/models/CashcmsPaymentMethod.ts
 src/models/CashcmsPost.ts
 src/models/CashcmsPostAttachmentRecord.ts
 src/models/CashcmsRegisterParams.ts

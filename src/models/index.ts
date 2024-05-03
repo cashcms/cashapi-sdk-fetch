@@ -7,6 +7,7 @@ export * from './CashcmsLoginParams';
 export * from './CashcmsLoginResponse';
 export * from './CashcmsMembership';
 export * from './CashcmsPagedResponseCashcmsPost';
+export * from './CashcmsPaymentMethod';
 export * from './CashcmsPost';
 export * from './CashcmsPostAttachmentRecord';
 export * from './CashcmsRegisterParams';
