@@ -13,7 +13,7 @@
  */
 
 
-export const BASE_PATH = "http://cashcms.dev/v2".replace(/\/+$/, "");
+export const BASE_PATH = "http://cashcms.dev".replace(/\/+$/, "");
 
 export interface ConfigurationParameters {
     basePath?: string; // override base path
